@@ -1,26 +1,31 @@
-import BackgroundBeams from "./ui/BackgroundBeams";
-import { ColourfulText } from "./ui/ColourfulText";
+import { hero } from "@/data";
+// import BackgroundBeams from "./ui/BackgroundBeams";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 export default function Hero() {
-  const description =
-    " Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit similique eum beatae officiis error! Itaque inventore recusandae";
   return (
     <>
-      <BackgroundBeams />
-      <div className="container py-[50px] flex flex-col items-center gap-[20px] md:flex-row md:justify-between">
-        <div className="w-screen h-[600px] bg-red-500 md:w-[40%]"></div>
-        <div className="hero-profile text-center md:text-start">
-          <ColourfulText
-            className="text-[32px] font-bold mb-3"
-            text="Ahmed Hamdy"
-          />
-          <h3 className="mb-5">Front End Developer</h3>
+      {/* <BackgroundBeams /> */}
+      <div className="container py-25! flex flex-col items-center gap-[20px] md:flex-row md:justify-between">
+        <div className="w-full h-[400px] bg-red-500 md:w-[40%]"></div>
+        <div className="hero-profile text-center w-full md:text-start md:w-[50%] ">
           <TextGenerateEffect
             duration={2}
             filter={false}
-            className="mb-5"
-            words={description}
+            className="text-[42px] font-bold mb-1"
+            words={hero.head}
+          />
+          <TextGenerateEffect
+            duration={2}
+            filter={false}
+            className="mb-5 text-[14px] tracking-wide"
+            words={hero.job}
+          />
+          <TextGenerateEffect
+            duration={3}
+            filter={true}
+            className="mb-5 text-[18px] leading-8 tracking-wider"
+            words={hero.description}
           />
         </div>
       </div>

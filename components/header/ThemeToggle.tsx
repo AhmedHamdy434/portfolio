@@ -13,7 +13,7 @@ const ThemeToggle = () => {
   return (
     <FontAwesomeIcon
       icon={resolvedTheme === "dark" ? faMoon : faSun}
-      className="cursor-pointer ps-6 me-auto md:text-[24px] md:ps-0"
+      className="cursor-pointer me-auto md:text-[24px] md:ps-0 text-primary-text"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     />
   );
