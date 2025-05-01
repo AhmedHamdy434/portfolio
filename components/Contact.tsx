@@ -14,11 +14,11 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href = `mailto:cmpunkthebest11@gmail.com from ${form.name}&body=${form.message} (${form.email})`;
+    window.location.href = `mailto:cmpunkthebest11@gmail.com?subject=${form.name}&body=${form.message}`;
   };
 
   return (
-    <section className="py-25 px-4 bg2">
+    <section className="py-25 px-4">
       <div className="text-center">
         <h2 className="text-4xl font-bold mb-8 md:mb-4" id="contact">
           Contact Me
@@ -26,7 +26,7 @@ export default function Contact() {
 
         <div className="flex flex-col sm:flex-row sm:justify-center gap-4 mb-8">
           <a
-            href="mailto:your-email@example.com"
+            href={`mailto:cmpunkthebest11@gmail.com`}
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition"
           >
             <Mail size={18} /> cmpunkthebest11@gmail.com

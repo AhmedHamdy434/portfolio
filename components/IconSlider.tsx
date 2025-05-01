@@ -19,7 +19,16 @@ import { InfiniteMovingCards } from "./ui/Infinite-MovingCards";
 const iconWidth = "w-[40px] h-[40px]";
 
 export default function IconSlider() {
-  return <InfiniteMovingCards items={icons} speed="fast" />;
+  return (
+    <div className="py-25">
+      <div className="container">
+        <h1 className="text-xl md:text-4xl font-bold mb-8" id="skills">
+          My Skills
+        </h1>
+        <InfiniteMovingCards items={icons} speed="fast" />;
+      </div>
+    </div>
+  );
 }
 
 const icons = [

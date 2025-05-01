@@ -1,12 +1,12 @@
 import { hero } from "@/data";
-// import BackgroundBeams from "./ui/BackgroundBeams";
+import BackgroundBeams from "./ui/BackgroundBeams";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 
 export default function Hero() {
   return (
     <>
-      {/* <BackgroundBeams /> */}
-      <div className="container py-25! flex flex-col items-center gap-[20px] md:flex-row md:justify-between">
+      <BackgroundBeams />
+      <div className="container py-25! flex flex-col z-1 items-center gap-[20px] md:flex-row md:justify-between">
         <div className="w-full h-[400px] bg-red-500 md:w-[40%]"></div>
         <div className="hero-profile text-center w-full md:text-start md:w-[50%] ">
           <TextGenerateEffect

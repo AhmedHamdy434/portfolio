@@ -8,7 +8,7 @@
   --divider: #eee;
   --error: #bf0000;
   --main: #3b82f6;
-  --background2: linear-gradient(to bottom, #f3f4f6, #ffffff);
+  --background2: linear-gradient(to bottom, #e2e7f1, #ffffff);
 }
 
 .dark {
@@ -81,7 +81,7 @@
   }
   @keyframes scrollInf {
     to {
-      transform: translate(calc(-50% - 0.5rem));
+      transform: translate(-300vw);
     }
   }
 }

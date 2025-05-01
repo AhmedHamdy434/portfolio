@@ -1,8 +1,10 @@
 export const hero = {
   head: "Ahmed Hamdy",
   job: "Front End Developer",
-  description:
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit similique eum beatae officiis error! Itaque inventore recusandae",
+  description: `Passionate and detail-oriented Frontend Developer with expertise in React, Next.js, TypeScript, and Tailwind CSS.
+     Skilled in creating responsive, high-performance web applications with a focus on user
+      experience and modern development practices.
+       Strong problem-solving abilities and a keen eye for design and functionality.`,
 };
 export const testimonials = [
   {

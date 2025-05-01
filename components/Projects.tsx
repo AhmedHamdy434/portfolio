@@ -9,11 +9,13 @@ export default function Projects() {
   ));
 
   return (
-    <div className="container h-full py-25!">
-      <h2 className="mx-auto text-xl md:text-4xl font-bold" id="projects">
-        Personal Projects
-      </h2>
-      <Carousel items={cards} />
+    <div className="bg2 py-25" id="projects">
+      <div className="container h-full">
+        <h2 className="mx-auto text-xl md:text-4xl font-bold">
+          Personal Projects
+        </h2>
+        <Carousel items={cards} />
+      </div>
     </div>
   );
 }
