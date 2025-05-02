@@ -60,7 +60,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
       carouselRef.current.scrollLeft = initialScroll;
       checkScrollability();
     }
-  });
+  }, [initialScroll]);
 
   const scrollLeft = () => {
     if (carouselRef.current) {
