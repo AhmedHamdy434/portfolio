@@ -33,8 +33,8 @@
   --animate-fourth: moveHorizontal 40s ease infinite;
   --animate-fifth: moveInCircle 20s ease infinite;
   --animate-scroll: scroll 20s linear infinite;
-  --animate-scrollInf: scrollInf var(--animation-duration, 20s)
-    var(--animation-direction, forwards) linear infinite;
+  --animate-scrollInfEn: scrollInfEn 20s forwards linear infinite;
+  --animate-scrollInfAr: scrollInfAr 20s forwards linear infinite;
 
   @keyframes moveHorizontal {
     0% {
@@ -79,9 +79,14 @@
       transform: translateX(-100%);
     }
   }
-  @keyframes scrollInf {
+  @keyframes scrollInfEn {
     to {
-      transform: translate(-300vw);
+      transform: translate(-200vw);
+    }
+  }
+  @keyframes scrollInfAr {
+    to {
+      transform: translate(200vw);
     }
   }
 }

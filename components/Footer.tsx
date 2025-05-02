@@ -1,20 +1,21 @@
-import { hero } from "@/data";
+import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { FaFacebook, FaGithub, FaLinkedinIn } from "react-icons/fa";
 
-const Footer = () => {
+const Footer = async () => {
+  const t = await getTranslations("Info");
   return (
     <footer className="py-12 bg2 text-center sm:text-start">
-      <div className="container flex flex-col gap-6 sm:flex-row sm:justify-between max-w-[700px] ">
-        <div className="first flex flex-col gap-2">
-          <h3 className="text-xl font-bold">{hero.head}</h3>
-          <h4 className="text-[14px]">{hero.job}</h4>
-          <p className="text-secondary-text text-[12px]">{hero.description}</p>
+      <div className="container flex flex-col gap-6 sm:flex-row sm:justify-between max-w-[1000px]">
+        <div className="first flex flex-col gap-2 max-w-[700px]">
+          <h3 className="text-xl font-bold">{t("name")}</h3>
+          <h4 className="text-[14px]">{t("job")}</h4>
+          <p className="text-secondary-text text-[12px]">{t("description")}</p>
         </div>
         <div className="second flex flex-col gap-3">
-          <h4 className="mobile">+2 01120713673</h4>
+          <h4 className="mobile">{t("phone")}</h4>
           <h4 className="email">cmpunkthebest@gmail.com</h4>
-          <h4 className="address">Mansoura-Egypt</h4>
+          <h4 className="address">{t("city")}</h4>
           <div className="icons flex gap-6 justify-center sm:justify-start">
             <Link
               href="https://www.facebook.com/profile.php?id=100006424186664"

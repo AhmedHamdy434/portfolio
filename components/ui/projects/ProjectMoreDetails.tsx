@@ -1,35 +1,36 @@
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 export type CardType = {
+  id: string;
   name: string;
   vercrlLink?: string;
   githubLink: string;
   src: string;
   images: string[];
   imagesMobile?: string[];
-  description: {
-    description: string;
-    technologies: string;
-    key: string[];
-  };
 };
 const ProjectMoreDetails = ({ card }: { card: CardType }) => {
+  const t = useTranslations(`Projects.${card.id}`);
+  const t2 = useTranslations("Projects");
+  const descriptionKeys = [t("key.1"), t("key.2"), t("key.3"), t("key.4")];
   return (
     <>
       <div className="bg-background p-8 md:p-14 rounded-3xl mb-4">
         <div className="text-secondary-text text-base md:text-xl font-sans max-w-3xl mx-auto mb-6 flex flex-col gap-3">
           <div>
-            <span className="font-bold text-main">Description : </span>
-            {card.description.description}
+            <span className="font-bold text-main">{t2("description")}</span>
+            {t("description")}
           </div>
           <div>
-            <span className="font-bold text-main">Technologies Used : </span>
-            {card.description.technologies}
+            <span className="font-bold text-main">{t2("technologies")}</span>
+            {t("technologies")}
           </div>
           <ul className="list-disc">
-            <span className="font-bold text-main">Key Contributions :</span>
-            {card.description.key.map((list, index) => (
-              <li key={`${list.split(" ")[0]}${index}`}>{list}</li>
-            ))}
+            <span className="font-bold text-main">{t2("keys")}</span>
+            {descriptionKeys.map(
+              (list, index) =>
+                list && <li key={`${list.split(" ")[0]}${index}`}>{list}</li>
+            )}
           </ul>
         </div>
         <div>

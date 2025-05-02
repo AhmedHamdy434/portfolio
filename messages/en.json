@@ -1,0 +1,89 @@
+{
+  "Header": {
+    "title": "My Portfolio",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "Info": {
+    "name": "Ahmed Hamdy",
+    "job": "Front End Developer",
+    "description": "Passionate and detail-oriented Frontend Developer with expertise in React, Next.js, TypeScript, and Tailwind CSS. Skilled in creating responsive, high-performance web applications with a focus on user experience and modern development practices. Strong problem-solving abilities and a keen eye for design and functionality.",
+    "city": "Mansoura - Egypt",
+    "phone": "+2 01120713673"
+  },
+  "Skills": {
+    "heading": "My Skills"
+  },
+  "Projects": {
+    "heading": "Personal Projects",
+    "vercel": "Vercel Link",
+    "github": "Github Link",
+    "description": "Description : ",
+    "technologies": "Technologies Used : ",
+    "keys": "Key Contributions :",
+
+    "1": {
+      "name": "Recipes",
+      "description": "Built a dynamic food meals website using Next.js and Tailwind CSS, Enhanced user experience with intuitive navigation and search functionalities.",
+      "technologies": "Next js, React, Tailwind CSS , TypeScript.",
+      "key": {
+        "1": "Integrated external APIs to fetch and display meals categorized by type and country.",
+        "2": "Implemented search functionality to find meals by name.",
+        "3": "Developed detailed meal pages with ingredients and preparation steps.",
+        "4": "Created a responsive layout for all devices with a light/dark mode toggle."
+      }
+    },
+    "2": {
+      "name": "Gym & Fitness Exercises",
+      "description": "Developed a ﬁtness application featuring 1,300+ categorized exercises using React, Enhanced user experience with intuitive navigation and search functionalities.",
+      "technologies": "React, React-Router, Vite , CSS.",
+      "key": {
+        "1": "Developed a fitness website featuring 1,300+ categorized exercises using React.",
+        "2": "Enhanced user experience with intuitive navigation and search functionalities.",
+        "3": "Implemented smooth animations and interactive UI for exercise demonstrations.",
+        "4": ""
+      }
+    },
+    "3": {
+      "name": "Top Movies",
+      "description": "Built a feature-rich movie search application using Next.js and Tailwind CSS.",
+      "technologies": "Next js, React, Tailwind CSS , TypeScript, Firebase.",
+      "key": {
+        "1": "Integrated external APIs to fetch and display real-time movie details.",
+        "2": "Implemented advanced filtering and sorting functionalities.",
+        "3": "Created a responsive layout for all devices with a light/dark mode toggle.",
+        "4": "Implemented authentication and setting movies to favorite list using Firebase."
+      }
+    },
+    "4": {
+      "name": "To-Do-List",
+      "description": "Adding and Removing tasks to local storage to remember in React.",
+      "technologies": "React, Vite, CSS.",
+      "key": {
+        "1": "Adding and removing daily tasks.",
+        "2": "Set tasks to be done or not yet.",
+        "3": "Save it in Local Storage.",
+        "4": ""
+      }
+    },
+    "5": {
+      "name": "Pokemon",
+      "description": "Developed application featuring 1,100+ categorized pokemons and sort them by their type.",
+      "technologies": "HTML, CSS, JavaScript.",
+      "key": {
+        "1": "Created a responsive layout for all devices.",
+        "2": "Implemented advanced filtering by name and type using JavaScript.",
+        "3": "",
+        "4": ""
+      }
+    }
+  },
+  "Contact": {
+    "heading": "Contact Me",
+    "paragraph": "Fell free to reach out if you have a project in mind or just want to connect.I'm always happy to chat!",
+    "placeholderName": "Enter Your Name",
+    "placeholderMessage": "Enter Your Message",
+    "button": "Send Message"
+  }
+}

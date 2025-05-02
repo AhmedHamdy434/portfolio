@@ -16,16 +16,21 @@ import {
   SiVite,
 } from "react-icons/si";
 import { InfiniteMovingCards } from "./ui/Infinite-MovingCards";
+import { getTranslations } from "next-intl/server";
+import { headers } from "next/headers";
 const iconWidth = "w-[40px] h-[40px]";
 
-export default function IconSlider() {
+export default async function IconSlider() {
+  const t = await getTranslations("Skills");
+  const headerList = await headers();
+  const en = headerList.get("x-next-intl-locale") == "en" ? true : false;
   return (
     <div className="py-25">
       <div className="container">
         <h1 className="text-xl md:text-4xl font-bold mb-8" id="skills">
-          My Skills
+          {t("heading")}
         </h1>
-        <InfiniteMovingCards items={icons} speed="fast" />;
+        <InfiniteMovingCards en={en} items={[...icons, ...icons, ...icons]} />
       </div>
     </div>
   );

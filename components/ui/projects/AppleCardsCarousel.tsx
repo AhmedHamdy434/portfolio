@@ -17,8 +17,10 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
 import Image, { ImageProps } from "next/image";
 import { useOutsideClick } from "@/hooks/use-outside-click";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import ProjectMoreDetails, { type CardType } from "./ProjectMoreDetails";
+import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
 interface CarouselProps {
   items: JSX.Element[];
@@ -34,35 +36,47 @@ export const CarouselContext = createContext<{
 });
 
 export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
+  const pathname = usePathname();
+  const en = pathname === "/en" ? true : false;
   const carouselRef = useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const [canScrollLeft, setCanScrollLeft] = useState(en ? false : true);
+  const [canScrollRight, setCanScrollRight] = useState(en ? true : false);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const checkScrollability = () => {
+    if (carouselRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+      if (en) {
+        setCanScrollLeft(scrollLeft > 0);
+        setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
+      } else {
+        setCanScrollLeft(scrollLeft < 0);
+        setCanScrollRight(scrollLeft > clientWidth - scrollWidth);
+      }
+    }
+  };
   useEffect(() => {
     if (carouselRef.current) {
       carouselRef.current.scrollLeft = initialScroll;
       checkScrollability();
     }
-  }, [initialScroll]);
-
-  const checkScrollability = () => {
-    if (carouselRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
-    }
-  };
+  });
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
+      carouselRef.current.scrollBy({
+        left: en ? -300 : 300,
+        behavior: "smooth",
+      });
     }
   };
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
+      carouselRef.current.scrollBy({
+        left: en ? 300 : -300,
+        behavior: "smooth",
+      });
     }
   };
 
@@ -72,7 +86,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
       const gap = isMobile() ? 4 : 8;
       const scrollPosition = (cardWidth + gap) * (index + 1);
       carouselRef.current.scrollTo({
-        left: scrollPosition,
+        left: en ? scrollPosition : -scrollPosition,
         behavior: "smooth",
       });
       setCurrentIndex(index);
@@ -117,25 +131,29 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
                   },
                 }}
                 key={"card" + index}
-                className="min-w-screen sm:min-w-[384px] rounded-3xl last:pr-[5%] md:last:pr-[33%]"
+                className="rounded-3xl last:pe-[5%] md:last:pe-[33%]"
               >
                 {item}
               </motion.div>
             ))}
           </div>
         </div>
-        <div className="mr-10 flex justify-end gap-2">
+        <div
+          className={`me-10 flex gap-2 ${
+            en ? "justify-end " : "flex-row-reverse justify-start"
+          }`}
+        >
           <button
             className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}
+            onClick={en ? scrollLeft : scrollRight}
+            disabled={en ? !canScrollLeft : !canScrollRight}
           >
             <IconArrowNarrowLeft className="h-6 w-6 text-gray-500" />
           </button>
           <button
             className="relative z-40 flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 disabled:opacity-50"
-            onClick={scrollRight}
-            disabled={!canScrollRight}
+            onClick={en ? scrollRight : scrollLeft}
+            disabled={en ? !canScrollRight : !canScrollLeft}
           >
             <IconArrowNarrowRight className="h-6 w-6 text-gray-500" />
           </button>
@@ -154,6 +172,9 @@ export const Card = ({
   index: number;
   layout?: boolean;
 }) => {
+  const t = useTranslations(`Projects.${card.id}`);
+  const t2 = useTranslations("Projects");
+
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { onCardClose } = useContext(CarouselContext);
@@ -205,7 +226,7 @@ export const Card = ({
               className="relative z-[60] mx-auto my-10 h-fit max-w-5xl rounded-3xl bg-white p-4 font-sans md:p-10 dark:bg-neutral-900"
             >
               <button
-                className="sticky top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
+                className="sticky top-4 end-0 ms-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
                 onClick={handleClose}
               >
                 <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
@@ -214,24 +235,24 @@ export const Card = ({
                 layoutId={layout ? `title-${card.name}` : undefined}
                 className="text-2xl font-semibold text-main md:text-5xl"
               >
-                {card.name}
+                {t("name")}
               </motion.p>
               <div className="links mt-3">
                 {card.vercrlLink && (
                   <Link
                     href={card.vercrlLink}
-                    className="vercel block hover:underline mb-1 hover:text-main transition-all duration-300"
+                    className="vercel block underline mb-1 hover:text-main transition-all duration-300"
                     target="blank"
                   >
-                    Vercel Link
+                    {t2("vercel")}
                   </Link>
                 )}
                 <Link
                   href={card.githubLink}
-                  className="github block hover:underline hover:text-main transition-all duration-300"
+                  className="github block underline hover:text-main transition-all duration-300"
                   target="blank"
                 >
-                  Github Link
+                  {t2("github")}
                 </Link>
               </div>
               <div className="py-4">
@@ -244,7 +265,7 @@ export const Card = ({
       <motion.button
         layoutId={layout ? `card-${card.name}` : undefined}
         onClick={handleOpen}
-        className="relative z-10 flex h-[400px] w-[70vw] flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:w-[500px] dark:bg-neutral-900
+        className="relative z-10 flex h-[400px] w-screen sm:w-[70vw] flex-col items-start justify-start overflow-hidden rounded-3xl bg-gray-100 md:w-[500px] dark:bg-neutral-900
         hover:scale-105 hover:rotate-2 transition-all duration-300"
       >
         <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent" />
@@ -253,7 +274,7 @@ export const Card = ({
             layoutId={layout ? `title-${card.name}` : undefined}
             className="mt-2 max-w-xs text-left text-xl font-semibold [text-wrap:balance] text-white md:text-3xl"
           >
-            {card.name}
+            {t("name")}
           </motion.p>
         </div>
         <BlurImage

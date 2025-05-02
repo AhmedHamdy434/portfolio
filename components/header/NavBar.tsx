@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
-
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import {
   Navbar,
   NavBody,
@@ -15,19 +15,22 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "../ui/ResizableNavbar";
+import LocaleToggle from "./LocaleToggle";
 
 const NavBar = () => {
+  const t = useTranslations("Header");
+
   const navItems = [
     {
-      name: "Skills",
+      name: t("skills"),
       link: "#skills",
     },
     {
-      name: "Projects",
+      name: t("projects"),
       link: "#projects",
     },
     {
-      name: "Contact",
+      name: t("contact"),
       link: "#contact",
     },
   ];
@@ -43,7 +46,9 @@ const NavBar = () => {
           <NavbarButton className="bg-transparent">
             <ThemeToggle />
           </NavbarButton>
-          <NavbarButton variant="primary">Contact Me</NavbarButton>
+          <NavbarButton variant="primary">
+            <LocaleToggle />
+          </NavbarButton>
         </div>
       </NavBody>
 
@@ -72,13 +77,15 @@ const NavBar = () => {
             </Link>
           ))}
           <div className="flex flex-col gap-4">
-            <ThemeToggle />
+            <NavbarButton className="bg-transparent">
+              <ThemeToggle />
+            </NavbarButton>
             <NavbarButton
               onClick={() => setIsMobileMenuOpen(false)}
               variant="primary"
               className="w-full"
             >
-              Contact Me
+              <LocaleToggle />
             </NavbarButton>
           </div>
         </MobileNavMenu>

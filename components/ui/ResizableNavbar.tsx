@@ -7,6 +7,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "motion/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 
 import React, { useRef, useState } from "react";
@@ -224,20 +225,28 @@ export const MobileNavToggle = ({
   onClick: () => void;
 }) => {
   return isOpen ? (
-    <IconX className="text-black dark:text-white" onClick={onClick} />
+    <IconX
+      className="cursor-pointer text-black dark:text-white"
+      onClick={onClick}
+    />
   ) : (
-    <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
+    <IconMenu2
+      className="cursor-pointer text-black dark:text-white"
+      onClick={onClick}
+    />
   );
 };
 
 export const NavbarLogo = () => {
+  const t = useTranslations("Header");
+
   return (
     <Link
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
     >
       <span className="font-medium text-black dark:text-white">
-        My Portfolio
+        {t("title")}
       </span>
     </Link>
   );
@@ -261,7 +270,7 @@ export const NavbarButton = ({
   | React.ComponentPropsWithoutRef<"button">
 )) => {
   const baseStyles =
-    "px-4 py-2 rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+    " rounded-md bg-white button bg-white text-black text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
   const variantStyles = {
     primary:
